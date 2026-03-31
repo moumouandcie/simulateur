@@ -61,7 +61,19 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
 .cbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;background:white;border:1.5px solid rgba(160,82,45,.2);border-radius:50px;text-decoration:none;font-size:12px;color:#2c1f16;font-weight:400}
 .tva{text-align:center;font-size:11px;color:#b0998a;font-style:italic;margin-top:18px}
+
+/* ── Animations au défilement ── */
+.reveal{
+opacity:0;
+transform:translateY(32px);
+transition:opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+}
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
 </style>
+
 </head>
 <body>
 <div class="wrap">
@@ -76,7 +88,7 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
   <a href="sms:+33619562866" class="btn-tel">&#x1F4F1; 06 19 56 28 66</a>
   <p class="sans-eng">1er contact sans engagement <span class="paw">&#x1F43E;</span></p>
 
-  <div class="card">
+  <div class="card reveal">
     <p class="stitle">Votre animal</p>
     <div class="tog2">
       <button class="tbtn on" id="bchat" onclick="setA('chat')">&#x1F431; Chat</button>
@@ -84,7 +96,7 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card reveal">
     <p class="stitle">Param&#232;tres de la garde</p>
     <div class="srow">
       <div class="slbl">Nombre de jours</div>
@@ -110,7 +122,7 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card reveal">
     <p class="stitle">Animaux &amp; suppl&#233;ments</p>
     <div class="srow">
       <div class="slbl">Nombre d&#8217;animaux</div>
@@ -126,7 +138,7 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
     <p class="inote">Ces suppl&#233;ments seront ajout&#233;s selon votre situation</p>
   </div>
 
-  <div class="rcard">
+  <div class="rcard reveal">
     <p class="reyebrow">Estimation totale</p>
     <div class="rtotal" id="rt">0 <em>&#8364;</em></div>
     <p class="rdetail" id="rd"></p>
@@ -150,7 +162,7 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
     <a href="https://wa.me/33619562866" target="_blank" class="cta">R&#233;server cette garde &#8594;</a>
   </div>
 
-  <div class="csec">
+  <div class="csec reveal">
     <p class="clbl">R&#233;server aussi par</p>
     <div class="cbtns">
       <a href="sms:+33619562866" class="cbtn">&#x1F4F1; SMS / WhatsApp</a>
@@ -159,10 +171,11 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
       <a href="https://www.facebook.com/share/14WNMfNXbQZ/?mibextid=wwXIfr" target="_blank" class="cbtn">&#x1F4D8; Facebook</a>
     </div>
   </div>
-  <p class="tva">TVA non applicable &#8212; article 293 B du CGI</p>
+  <p class="tva reveal">TVA non applicable &#8212; article 293 B du CGI</p>
 </div>
 
 <script>
+/* ── Simulateur ── */
 (function(){
 var S={a:'chat',j:0,p:0,d:30,n:1};
 var T={
@@ -225,6 +238,20 @@ window.setA=setA;
 window.setD=setD;
 window.ch=ch;
 calc();
+})();
+
+/* ── Animations au défilement ── */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){ io.observe(el); });
 })();
 </script>
 
