@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur — Moumou &amp; Cie</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+html,body{background:#f7f2eb;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
+.wrap{max-width:520px;margin:0 auto}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a0522d;text-decoration:none;font-weight:500;margin-bottom:36px}
+.titre{font-family:'Italiana',serif;font-size:clamp(52px,13vw,90px);font-weight:400;text-align:center;color:#2c1f16;line-height:1;letter-spacing:-1px;margin-bottom:6px}
+.titre em{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a0522d;font-size:clamp(56px,14vw,96px)}
+.deco{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0 12px}
+.deco-line{width:36px;height:1px}
+.deco-line.l{background:linear-gradient(to right,transparent,#c4855a)}
+.deco-line.r{background:linear-gradient(to left,transparent,#c4855a)}
+.deco-txt{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500}
+.sub{text-align:center;font-size:14px;font-weight:300;color:#7a6658;margin-bottom:28px;line-height:1.7}
+.btn-tel{display:block;width:fit-content;margin:0 auto 8px;padding:16px 38px;background:#a0522d;color:white;text-decoration:none;font-size:13px;font-weight:500;letter-spacing:1.5px;border-radius:60px;box-shadow:0 8px 28px rgba(160,82,45,.35)}
+.sans-eng{text-align:center;font-size:12px;color:#a89080;font-style:italic;font-weight:300;margin-bottom:32px}
+.paw{display:inline-block;animation:paw 2s ease-in-out infinite}
+@keyframes paw{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-5px) rotate(5deg)}}
+.card{background:white;border-radius:24px;padding:28px 24px 28px 32px;border:1px solid rgba(160,82,45,.08);box-shadow:0 8px 32px rgba(160,82,45,.07);margin-bottom:12px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#a0522d,#c4855a);border-radius:24px 0 0 24px}
+.stitle{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500;margin-bottom:14px}
+.tog2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tog3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.tbtn{padding:14px 8px;border:1.5px solid rgba(160,82,45,.2);border-radius:14px;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;color:#7a6658;transition:.2s;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.tbtn.on{background:#a0522d;border-color:#a0522d;color:white}
+.srow{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.slbl{font-size:13px;color:#2c1f16}
+.slbl small{font-size:11px;color:#a89080;font-weight:300;margin-left:4px}
+.step{display:flex;align-items:center;background:#f7f2eb;border-radius:40px;border:1px solid rgba(160,82,45,.15)}
+.step button{width:38px;height:38px;background:transparent;border:none;cursor:pointer;font-size:20px;color:#a0522d;display:flex;align-items:center;justify-content:center}
+.step span{min-width:30px;text-align:center;font-size:15px;font-weight:500;color:#2c1f16}
+.irow{display:flex;justify-content:space-between;font-size:13px;color:#7a6658;padding:8px 0;border-bottom:1px solid #f5ede4;font-weight:300}
+.irow:last-of-type{border-bottom:none}
+.ival{font-weight:500;color:#a0522d}
+.inote{font-size:11px;color:#b0998a;font-style:italic;margin-top:10px}
+.rcard{background:white;border-radius:24px;padding:28px 24px 28px 32px;border:1px solid rgba(160,82,45,.08);box-shadow:0 8px 32px rgba(160,82,45,.07);margin-bottom:12px;position:relative;overflow:hidden}
+.rcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#a0522d,#c4855a);border-radius:24px 0 0 24px}
+.reyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500;margin-bottom:6px}
+.rtotal{font-family:'Italiana',serif;font-size:clamp(72px,18vw,110px);line-height:1;letter-spacing:-3px;color:#2c1f16;margin-bottom:6px}
+.rtotal em{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a0522d}
+.rdetail{font-size:12px;color:#a89080;margin-bottom:18px;font-weight:300;line-height:1.7}
+.bdown{border-top:1px solid #f0e8e0;padding-top:14px;margin-bottom:18px}
+.bline{display:flex;justify-content:space-between;font-size:13px;color:#7a6658;padding:4px 0;font-weight:300}
+.bline.bold{color:#2c1f16;font-weight:500;border-top:1px solid #f0e8e0;margin-top:6px;padding-top:10px;font-size:14px}
+.bline.green{color:#6b9e6b}
+.abox{background:#f7f2eb;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.albl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a0522d;margin-bottom:4px}
+.aval{font-size:22px;font-weight:500;color:#2c1f16}
+.anote{font-size:11px;color:#a89080;margin-top:2px;font-weight:300}
+.cta{display:block;width:100%;padding:15px;background:#a0522d;color:white;text-align:center;text-decoration:none;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;border-radius:60px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:18px}
+.csec{text-align:center;margin-top:26px}
+.clbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500;margin-bottom:14px}
+.cbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.cbtn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:white;border:1.5px solid rgba(160,82,45,.2);border-radius:50px;text-decoration:none;font-size:12px;color:#2c1f16;font-weight:400}
+.tva{text-align:center;font-size:11px;color:#b0998a;font-style:italic;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="https://moumouandcie.github.io" class="back">&#8592; Retour au site</a>
+  <h1 class="titre">Moumou<br><em>&amp; Cie</em></h1>
+  <div class="deco">
+    <div class="deco-line l"></div>
+    <span class="deco-txt">Simulez votre garde</span>
+    <div class="deco-line r"></div>
+  </div>
+  <p class="sub">Estimez le co&#251;t de la garde de votre animal<br>en quelques secondes <span class="paw">&#x1F43E;</span></p>
+  <a href="sms:+33619562866" class="btn-tel">&#x1F4F1; 06 19 56 28 66</a>
+  <p class="sans-eng">1er contact sans engagement <span class="paw">&#x1F43E;</span></p>
+
+  <div class="card">
+    <p class="stitle">Votre animal</p>
+    <div class="tog2">
+      <button class="tbtn on" id="bchat" onclick="setA('chat')">&#x1F431; Chat</button>
+      <button class="tbtn" id="bchien" onclick="setA('chien')">&#x1F436; Chien</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="stitle">Param&#232;tres de la garde</p>
+    <div class="srow">
+      <div class="slbl">Nombre de jours</div>
+      <div class="step">
+        <button onclick="ch('j',-1)">&#8722;</button>
+        <span id="vj">0</span>
+        <button onclick="ch('j',1)">+</button>
+      </div>
+    </div>
+    <div class="srow">
+      <div class="slbl">Passages <small>/ jour</small></div>
+      <div class="step">
+        <button onclick="ch('p',-1)">&#8722;</button>
+        <span id="vp">0</span>
+        <button onclick="ch('p',1)">+</button>
+      </div>
+    </div>
+    <p class="stitle" style="margin-top:6px">Dur&#233;e par passage</p>
+    <div class="tog3">
+      <button class="tbtn on" id="b30" onclick="setD(30)">30 min</button>
+      <button class="tbtn" id="b45" onclick="setD(45)">45 min</button>
+      <button class="tbtn" id="b60" onclick="setD(60)">1 heure</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="stitle">Animaux &amp; suppl&#233;ments</p>
+    <div class="srow">
+      <div class="slbl">Nombre d&#8217;animaux</div>
+      <div class="step">
+        <button onclick="ch('n',-1)">&#8722;</button>
+        <span id="vn">1</span>
+        <button onclick="ch('n',1)">+</button>
+      </div>
+    </div>
+    <div class="irow"><span>Suppl&#233;ment animaux</span><span class="ival" id="sa">0 &#8364;</span></div>
+    <div class="irow"><span>R&#233;duction 7 jours+</span><span id="sr" style="font-weight:500;color:#a89080">-5% (non appliqu&#233;e)</span></div>
+    <div class="irow" style="color:#a89080;font-style:italic"><span>Dim. &amp; j. f&#233;ri&#233;s</span><span style="color:#a89080">+3 &#8364;</span></div>
+    <p class="inote">Ces suppl&#233;ments seront ajout&#233;s selon votre situation</p>
+  </div>
+
+  <div class="rcard">
+    <p class="reyebrow">Estimation totale</p>
+    <div class="rtotal" id="rt">0 <em>&#8364;</em></div>
+    <p class="rdetail" id="rd"></p>
+    <div class="bdown">
+      <div class="bline"><span>Tarif de base / jour</span><span id="lb"></span></div>
+      <div class="bline"><span id="ljl">&#215; 0 jour</span><span id="lj"></span></div>
+      <div class="bline"><span>Suppl&#233;ments animaux</span><span id="ls"></span></div>
+      <div class="bline green" id="ldrow" style="display:none"><span>R&#233;duction -5%</span><span id="ld"></span></div>
+      <div class="bline bold"><span>Total TTC</span><span id="lt">0 &#8364;</span></div>
+    </div>
+    <div class="abox">
+      <p class="albl">Acompte &#224; la r&#233;servation (30%)</p>
+      <p class="aval" id="ra">0 &#8364;</p>
+      <p class="anote">&#192; r&#233;gler &#224; la r&#233;servation</p>
+    </div>
+    <div class="abox">
+      <p class="albl">Solde restant (70%)</p>
+      <p class="aval" id="rs">0 &#8364;</p>
+      <p class="anote">&#192; r&#233;gler au commencement de la garde</p>
+    </div>
+    <a href="https://wa.me/33619562866" target="_blank" class="cta">R&#233;server cette garde &#8594;</a>
+  </div>
+
+  <div class="csec">
+    <p class="clbl">R&#233;server aussi par</p>
+    <div class="cbtns">
+      <a href="sms:+33619562866" class="cbtn">&#x1F4F1; SMS / WhatsApp</a>
+      <a href="mailto:moumouandcie@gmail.com" class="cbtn">&#x2709;&#xFE0F; Mail</a>
+      <a href="https://instagram.com/moumou.and.cie" target="_blank" class="cbtn">&#x1F4F8; Instagram</a>
+      <a href="https://www.facebook.com/share/14WNMfNXbQZ/?mibextid=wwXIfr" target="_blank" class="cbtn">&#x1F4D8; Facebook</a>
+    </div>
+  </div>
+  <p class="tva">TVA non applicable &#8212; article 293 B du CGI</p>
+</div>
+
+<script>
+(function(){
+var S={a:'chat',j:0,p:0,d:30,n:1};
+var T={
+  chat:{1:{30:12,45:15,60:18},2:{30:23,45:28,60:33},3:{30:34,45:40,60:46}},
+  chien:{1:{30:14,45:17,60:20},2:{30:27,45:32,60:38},3:{30:41,45:48,60:56}}
+};
+function euro(n){
+  var s=n.toFixed(2).replace('.',',').replace(/,00$/,'');
+  return s+'\u00a0\u20ac';
+}
+function setA(v){
+  S.a=v;
+  document.getElementById('bchat').className='tbtn'+(v==='chat'?' on':'');
+  document.getElementById('bchien').className='tbtn'+(v==='chien'?' on':'');
+  calc();
+}
+function setD(v){
+  S.d=v;
+  document.getElementById('b30').className='tbtn'+(v===30?' on':'');
+  document.getElementById('b45').className='tbtn'+(v===45?' on':'');
+  document.getElementById('b60').className='tbtn'+(v===60?' on':'');
+  calc();
+}
+function ch(k,d){
+  var mn={j:0,p:0,n:1};
+  var mx={j:30,p:3,n:10};
+  S[k]=Math.min(mx[k],Math.max(mn[k],S[k]+d));
+  document.getElementById('v'+k).textContent=S[k];
+  calc();
+}
+function calc(){
+  var p=Math.min(Math.max(S.p,1),3);
+  var base=T[S.a][p][S.d];
+  var sup=(S.n-1)*3;
+  var sub=(base+sup)*S.j;
+  var red=S.j>=7?sub*0.05:0;
+  var tot=sub-red;
+  var ac=tot*0.3;
+  var so=tot*0.7;
+  document.getElementById('sa').textContent=sup>0?'+'+sup+'\u00a0\u20ac/jour':'0\u00a0\u20ac';
+  var srEl=document.getElementById('sr');
+  if(S.j>=7){srEl.textContent='-5% appliqu\u00e9e !';srEl.style.color='#6b9e6b';}
+  else{srEl.textContent='-5% (non appliqu\u00e9e)';srEl.style.color='#a89080';}
+  document.getElementById('lb').textContent=euro(base)+'/jour';
+  document.getElementById('ljl').textContent='\u00d7\u00a0'+S.j+'\u00a0jour'+(S.j>1?'s':'');
+  document.getElementById('lj').textContent=S.j>0?euro(base*S.j):'0\u00a0\u20ac';
+  document.getElementById('ls').textContent=sup>0?'+'+euro(sup*S.j):'0\u00a0\u20ac';
+  var dr=document.getElementById('ldrow');
+  if(red>0){dr.style.display='flex';document.getElementById('ld').textContent='-'+euro(red);}
+  else{dr.style.display='none';}
+  document.getElementById('lt').textContent=euro(tot);
+  document.getElementById('rt').innerHTML=Math.round(tot)+'\u00a0<em>\u20ac</em>';
+  var al=S.a==='chat'?'\ud83d\udc31 Chat':'\ud83d\udc36 Chien';
+  var dl=S.d===60?'1h':S.d+' min';
+  document.getElementById('rd').textContent=S.j>0&&S.p>0?al+' \u00b7 '+S.p+' passage'+(S.p>1?'s':'')+' de '+dl+' \u00b7 '+S.j+' jour'+(S.j>1?'s':'')+' \u00b7 '+S.n+' animal'+(S.n>1?'x':''):'';
+  document.getElementById('ra').textContent=euro(ac);
+  document.getElementById('rs').textContent=euro(so);
+}
+window.setA=setA;
+window.setD=setD;
+window.ch=ch;
+calc();
+})();
+</script>
+</body>
+</html>
