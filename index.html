@@ -28,7 +28,6 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
 .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#a0522d,#c4855a);border-radius:24px 0 0 24px}
 .stitle{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500;margin-bottom:14px}
 .tog2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tog3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
 .tbtn{padding:14px 8px;border:1.5px solid rgba(160,82,45,.2);border-radius:14px;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;color:#7a6658;transition:.2s;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
 .tbtn.on{background:#a0522d;border-color:#a0522d;color:white}
 .srow{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
@@ -37,15 +36,30 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
 .step{display:flex;align-items:center;background:#f7f2eb;border-radius:40px;border:1px solid rgba(160,82,45,.15)}
 .step button{width:38px;height:38px;background:transparent;border:none;cursor:pointer;font-size:20px;color:#a0522d;display:flex;align-items:center;justify-content:center}
 .step span{min-width:30px;text-align:center;font-size:15px;font-weight:500;color:#2c1f16}
+
+/* Passages individuels */
+.passages-list{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.passage-item{background:#f7f2eb;border-radius:16px;padding:14px 16px;border:1px solid rgba(160,82,45,.1);display:flex;align-items:center;justify-content:space-between;gap:10px;animation:slideIn .3s cubic-bezier(.22,1,.36,1)}
+@keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.passage-label{font-size:12px;font-weight:500;color:#a0522d;min-width:72px}
+.duree-btns{display:flex;gap:6px;flex:1}
+.dbtn{flex:1;padding:8px 4px;border:1.5px solid rgba(160,82,45,.2);border-radius:10px;background:white;cursor:pointer;font-family:‘DM Sans’,sans-serif;font-size:12px;color:#7a6658;transition:.2s;text-align:center}
+.dbtn.on{background:#a0522d;border-color:#a0522d;color:white;font-weight:500}
+.del-btn{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(160,82,45,.2);background:white;cursor:pointer;font-size:14px;color:#a89080;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
+.del-btn:hover{background:#fff0eb;border-color:#a0522d;color:#a0522d}
+.add-passage-btn{width:100%;padding:12px;border:1.5px dashed rgba(160,82,45,.3);border-radius:14px;background:transparent;cursor:pointer;font-family:‘DM Sans’,sans-serif;font-size:12px;color:#a0522d;font-weight:500;letter-spacing:1px;transition:.2s;margin-top:4px}
+.add-passage-btn:hover{background:#fff8f4;border-color:#a0522d}
+.add-passage-btn:disabled{opacity:.35;cursor:not-allowed}
+
 .irow{display:flex;justify-content:space-between;font-size:13px;color:#7a6658;padding:8px 0;border-bottom:1px solid #f5ede4;font-weight:300}
 .irow:last-of-type{border-bottom:none}
 .ival{font-weight:500;color:#a0522d}
 .inote{font-size:11px;color:#b0998a;font-style:italic;margin-top:10px}
 .rcard{background:white;border-radius:24px;padding:28px 24px 28px 32px;border:1px solid rgba(160,82,45,.08);box-shadow:0 8px 32px rgba(160,82,45,.07);margin-bottom:12px;position:relative;overflow:hidden}
-.rcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#a0522d,#c4855a);border-radius:24px 0 0 24px}
+.rcard::before{content:””;position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#a0522d,#c4855a);border-radius:24px 0 0 24px}
 .reyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500;margin-bottom:6px}
-.rtotal{font-family:'Italiana',serif;font-size:clamp(72px,18vw,110px);line-height:1;letter-spacing:-3px;color:#2c1f16;margin-bottom:6px}
-.rtotal em{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a0522d}
+.rtotal{font-family:‘Italiana’,serif;font-size:clamp(72px,18vw,110px);line-height:1;letter-spacing:-3px;color:#2c1f16;margin-bottom:6px}
+.rtotal em{font-family:‘Cormorant Garamond’,serif;font-style:italic;color:#a0522d}
 .rdetail{font-size:12px;color:#a89080;margin-bottom:18px;font-weight:300;line-height:1.7}
 .bdown{border-top:1px solid #f0e8e0;padding-top:14px;margin-bottom:18px}
 .bline{display:flex;justify-content:space-between;font-size:13px;color:#7a6658;padding:4px 0;font-weight:300}
@@ -55,200 +69,502 @@ body{font-family:'DM Sans',sans-serif;color:#2c1f16;padding:52px 20px 80px}
 .albl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a0522d;margin-bottom:4px}
 .aval{font-size:22px;font-weight:500;color:#2c1f16}
 .anote{font-size:11px;color:#a89080;margin-top:2px;font-weight:300}
-.cta{display:block;width:100%;padding:15px;background:#a0522d;color:white;text-align:center;text-decoration:none;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;border-radius:60px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:18px}
+.cta{display:block;width:100%;padding:15px;background:#a0522d;color:white;text-align:center;text-decoration:none;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;border-radius:60px;border:none;cursor:pointer;font-family:‘DM Sans’,sans-serif;margin-top:18px}
 .csec{text-align:center;margin-top:26px}
 .clbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a0522d;font-weight:500;margin-bottom:14px}
 .cbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .cbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;background:white;border:1.5px solid rgba(160,82,45,.2);border-radius:50px;text-decoration:none;font-size:12px;color:#2c1f16;font-weight:400}
 .tva{text-align:center;font-size:11px;color:#b0998a;font-style:italic;margin-top:18px}
+.copy-btn{display:block;width:100%;padding:15px;background:white;color:#a0522d;text-align:center;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;border-radius:60px;border:1.5px solid #a0522d;cursor:pointer;font-family:‘DM Sans’,sans-serif;margin-top:10px;transition:.2s}
+.copy-btn:active{background:#fff0eb}
+.copy-ok{text-align:center;font-size:12px;color:#6b9e6b;font-style:italic;margin-top:8px;height:18px;transition:.3s}
+.recap-card{background:white;border-radius:24px;padding:24px 24px 24px 32px;border:1px solid rgba(160,82,45,.08);box-shadow:0 8px 32px rgba(160,82,45,.07);margin-bottom:12px;position:relative;overflow:hidden}
+.recap-card::before{content:””;position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#a0522d,#c4855a);border-radius:24px 0 0 24px}
+.recap-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:#f7f2eb;border-radius:40px;font-size:12px;color:#2c1f16;font-weight:400;border:1px solid rgba(160,82,45,.1)}
+.chip em{font-style:normal;color:#a0522d;font-weight:500}
+.chip.empty{color:#b0998a;font-style:italic;font-size:11px}
+.note-input{width:100%;padding:12px 14px;border:1.5px solid rgba(160,82,45,.2);border-radius:12px;background:#f7f2eb;font-family:‘DM Sans’,sans-serif;font-size:13px;color:#2c1f16;outline:none;resize:none;min-height:80px;margin-top:6px}
+.note-input:focus{border-color:#a0522d}
 
-/* ── Animations au défilement ── */
-.reveal{
-opacity:0;
-transform:translateY(32px);
-transition:opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
-}
-.reveal.visible{
-opacity:1;
-transform:translateY(0);
-}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+.dates-row{display:flex;align-items:center;gap:10px}
+.date-field{flex:1;display:flex;flex-direction:column;gap:6px}
+.date-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#a0522d;font-weight:500}
+.date-input{width:100%;padding:12px 14px;border:1.5px solid rgba(160,82,45,.2);border-radius:12px;background:#f7f2eb;font-family:‘DM Sans’,sans-serif;font-size:13px;color:#2c1f16;outline:none;-webkit-appearance:none}
+.date-input:focus{border-color:#a0522d}
+.date-sep{font-size:18px;color:#c4855a;margin-top:18px}
+.d-result{margin-top:14px;background:#f7f2eb;border-radius:12px;padding:12px 14px;font-size:13px;color:#2c1f16;font-weight:500}
+.d-result.warn{color:#c0392b;background:#fff0ee}
+
+.passage-tarif{font-size:11px;color:#a89080;min-width:44px;text-align:right;font-weight:300}
 </style>
 
 </head>
 <body>
 <div class="wrap">
-  <a href="https://moumouandcie.github.io" class="back">&#8592; Retour au site</a>
+  <a href="https://moumouandcie.github.io" class="back">&#8592; Fin de garde au site</a>
   <h1 class="titre">Moumou<br><em>&amp; Cie</em></h1>
   <div class="deco">
     <div class="deco-line l"></div>
     <span class="deco-txt">Simulez votre garde</span>
     <div class="deco-line r"></div>
   </div>
-  <p class="sub">Estimez le co&#251;t de la garde de votre animal<br>en quelques secondes <span class="paw">&#x1F43E;</span></p>
-  <a href="sms:+33619562866" class="btn-tel">&#x1F4F1; 06 19 56 28 66</a>
-  <p class="sans-eng">1er contact sans engagement <span class="paw">&#x1F43E;</span></p>
+  <p class="sub">Estimez le coût de la garde de votre animal<br>en quelques secondes <span class="paw">🐾</span></p>
+  <a href="sms:+33619562866" class="btn-tel">📱 06 19 56 28 66</a>
+  <p class="sans-eng">1er contact sans engagement <span class="paw">🐾</span></p>
+
+  <!-- Animal -->
 
   <div class="card reveal">
-    <p class="stitle">Votre animal</p>
-    <div class="tog2">
-      <button class="tbtn on" id="bchat" onclick="setA('chat')">&#x1F431; Chat</button>
-      <button class="tbtn" id="bchien" onclick="setA('chien')">&#x1F436; Chien</button>
+    <p class="stitle">Vos animaux</p>
+    <div class="srow">
+      <div class="slbl">🐱 Chats</div>
+      <div class="step">
+        <button onclick="chA('chats',-1)">−</button>
+        <span id="vchats">0</span>
+        <button onclick="chA('chats',1)">+</button>
+      </div>
+    </div>
+    <div class="srow" style="margin-bottom:0">
+      <div class="slbl">🐶 Chiens</div>
+      <div class="step">
+        <button onclick="chA('chiens',-1)">−</button>
+        <span id="vchiens">0</span>
+        <button onclick="chA('chiens',1)">+</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Jours -->
+
+  <div class="card reveal">
+    <p class="stitle">Dates de garde</p>
+    <div class="dates-row">
+      <div class="date-field">
+        <label class="date-lbl">Début de garde</label>
+        <input type="date" id="d-start" class="date-input" oninput="calcDates()">
+      </div>
+      <div class="date-sep">→</div>
+      <div class="date-field">
+        <label class="date-lbl">Fin de garde</label>
+        <input type="date" id="d-end" class="date-input" oninput="calcDates()">
+      </div>
+    </div>
+    <div id="d-result" class="d-result" style="display:none"></div>
+  </div>
+
+  <!-- Passages individuels -->
+
+  <div class="card reveal">
+    <p class="stitle">Passages par jour</p>
+    <div class="passages-list" id="passages-list"></div>
+    <button class="add-passage-btn" id="add-btn" onclick="addPassage()" style="margin-top:12px">+ Ajouter un passage</button>
+  </div>
+
+  <!-- Animaux & suppléments -->
+
+  <div class="card reveal">
+    <p class="stitle">Suppléments</p>
+    <div class="irow"><span>Supplément animaux</span><span class="ival" id="sa">0 €</span></div>
+    <div class="irow"><span>Réduction 7 jours+</span><span id="sr" style="font-weight:500;color:#a89080">-5% (non appliquée)</span></div>
+    <div class="irow"><span>Dim. &amp; j. fériés</span><span class="ival" id="sd">+3 € / jour concerné</span></div>
+    <p class="inote">Ces suppléments seront calculés automatiquement selon vos dates</p>
+  </div>
+
+  <!-- Résumé visuel -->
+
+  <div class="recap-card reveal">
+    <p class="stitle">Récapitulatif</p>
+    <div class="recap-chips" id="recap-chips">
+      <span class="chip empty">Remplissez les champs ci-dessus</span>
     </div>
   </div>
 
-  <div class="card reveal">
-    <p class="stitle">Param&#232;tres de la garde</p>
-    <div class="srow">
-      <div class="slbl">Nombre de jours</div>
-      <div class="step">
-        <button onclick="ch('j',-1)">&#8722;</button>
-        <span id="vj">0</span>
-        <button onclick="ch('j',1)">+</button>
-      </div>
-    </div>
-    <div class="srow">
-      <div class="slbl">Passages <small>/ jour</small></div>
-      <div class="step">
-        <button onclick="ch('p',-1)">&#8722;</button>
-        <span id="vp">0</span>
-        <button onclick="ch('p',1)">+</button>
-      </div>
-    </div>
-    <p class="stitle" style="margin-top:6px">Dur&#233;e par passage</p>
-    <div class="tog3">
-      <button class="tbtn on" id="b30" onclick="setD(30)">30 min</button>
-      <button class="tbtn" id="b45" onclick="setD(45)">45 min</button>
-      <button class="tbtn" id="b60" onclick="setD(60)">1 heure</button>
-    </div>
-  </div>
-
-  <div class="card reveal">
-    <p class="stitle">Animaux &amp; suppl&#233;ments</p>
-    <div class="srow">
-      <div class="slbl">Nombre d&#8217;animaux</div>
-      <div class="step">
-        <button onclick="ch('n',-1)">&#8722;</button>
-        <span id="vn">1</span>
-        <button onclick="ch('n',1)">+</button>
-      </div>
-    </div>
-    <div class="irow"><span>Suppl&#233;ment animaux</span><span class="ival" id="sa">0 &#8364;</span></div>
-    <div class="irow"><span>R&#233;duction 7 jours+</span><span id="sr" style="font-weight:500;color:#a89080">-5% (non appliqu&#233;e)</span></div>
-    <div class="irow" style="color:#a89080;font-style:italic"><span>Dim. &amp; j. f&#233;ri&#233;s</span><span style="color:#a89080">+3 &#8364;</span></div>
-    <p class="inote">Ces suppl&#233;ments seront ajout&#233;s selon votre situation</p>
-  </div>
+  <!-- Résultat -->
 
   <div class="rcard reveal">
     <p class="reyebrow">Estimation totale</p>
-    <div class="rtotal" id="rt">0 <em>&#8364;</em></div>
+    <div class="rtotal" id="rt">0 <em>€</em></div>
+    <p id="rpj" style="font-size:13px;color:#a0522d;font-weight:500;margin-bottom:4px;letter-spacing:.5px"></p>
     <p class="rdetail" id="rd"></p>
     <div class="bdown">
-      <div class="bline"><span>Tarif de base / jour</span><span id="lb"></span></div>
-      <div class="bline"><span id="ljl">&#215; 0 jour</span><span id="lj"></span></div>
-      <div class="bline"><span>Suppl&#233;ments animaux</span><span id="ls"></span></div>
-      <div class="bline green" id="ldrow" style="display:none"><span>R&#233;duction -5%</span><span id="ld"></span></div>
-      <div class="bline bold"><span>Total TTC</span><span id="lt">0 &#8364;</span></div>
+      <div class="bline"><span>Tarif de base / jour</span><span id="lb">0 €</span></div>
+      <div class="bline"><span id="ljl">× 0 jour</span><span id="lj">0 €</span></div>
+      <div class="bline"><span>Suppléments animaux</span><span id="ls">0 €</span></div>
+      <div class="bline" id="lspecrow" style="display:none"><span id="lspeclbl">Dim./fériés</span><span id="lspec">0 €</span></div>
+      <div class="bline green" id="ldrow" style="display:none"><span>Réduction -5%</span><span id="ld"></span></div>
+      <div class="bline bold"><span>Total TTC</span><span id="lt">0 €</span></div>
     </div>
     <div class="abox">
-      <p class="albl">Acompte &#224; la r&#233;servation (30%)</p>
-      <p class="aval" id="ra">0 &#8364;</p>
-      <p class="anote">&#192; r&#233;gler &#224; la r&#233;servation</p>
+      <p class="albl">Acompte à la réservation (30%)</p>
+      <p class="aval" id="ra">0 €</p>
+      <p class="anote">À régler à la réservation</p>
     </div>
     <div class="abox">
       <p class="albl">Solde restant (70%)</p>
-      <p class="aval" id="rs">0 &#8364;</p>
-      <p class="anote">&#192; r&#233;gler au commencement de la garde</p>
+      <p class="aval" id="rs">0 €</p>
+      <p class="anote">À régler au commencement de la garde</p>
     </div>
-    <a href="https://wa.me/33619562866" target="_blank" class="cta">R&#233;server cette garde &#8594;</a>
+    <a href="https://wa.me/33619562866" target="_blank" class="cta">Réserver cette garde →</a>
+    <button class="copy-btn" onclick="copierRecap()">📋 Copier le récapitulatif</button>
+    <p class="copy-ok" id="copy-ok"></p>
   </div>
 
   <div class="csec reveal">
-    <p class="clbl">R&#233;server aussi par</p>
+    <p class="clbl">Réserver aussi par</p>
     <div class="cbtns">
-      <a href="sms:+33619562866" class="cbtn">&#x1F4F1; SMS / WhatsApp</a>
-      <a href="mailto:moumouandcie@gmail.com" class="cbtn">&#x2709;&#xFE0F; Mail</a>
-      <a href="https://instagram.com/moumou.and.cie" target="_blank" class="cbtn">&#x1F4F8; Instagram</a>
-      <a href="https://www.facebook.com/share/14WNMfNXbQZ/?mibextid=wwXIfr" target="_blank" class="cbtn">&#x1F4D8; Facebook</a>
+      <a href="sms:+33619562866" class="cbtn">📱 SMS / WhatsApp</a>
+      <a href="mailto:moumouandcie@gmail.com" class="cbtn">✉️ Mail</a>
+      <a href="https://instagram.com/moumou.and.cie" target="_blank" class="cbtn">📸 Instagram</a>
+      <a href="https://www.facebook.com/share/14WNMfNXbQZ/?mibextid=wwXIfr" target="_blank" class="cbtn">📘 Facebook</a>
     </div>
   </div>
-  <p class="tva reveal">TVA non applicable &#8212; article 293 B du CGI</p>
+  <p class="tva reveal">TVA non applicable — article 293 B du CGI</p>
 </div>
 
 <script>
-/* ── Simulateur ── */
 (function(){
-var S={a:'chat',j:0,p:0,d:30,n:1};
-var T={
-  chat:{1:{30:12,45:15,60:18},2:{30:23,45:28,60:33},3:{30:34,45:40,60:46}},
-  chien:{1:{30:14,45:17,60:20},2:{30:27,45:32,60:38},3:{30:41,45:48,60:56}}
-};
-function euro(n){
-  var s=n.toFixed(2).replace('.',',').replace(/,00$/,'');
-  return s+'\u00a0\u20ac';
-}
-function setA(v){
-  S.a=v;
-  document.getElementById('bchat').className='tbtn'+(v==='chat'?' on':'');
-  document.getElementById('bchien').className='tbtn'+(v==='chien'?' on':'');
-  calc();
-}
-function setD(v){
-  S.d=v;
-  document.getElementById('b30').className='tbtn'+(v===30?' on':'');
-  document.getElementById('b45').className='tbtn'+(v===45?' on':'');
-  document.getElementById('b60').className='tbtn'+(v===60?' on':'');
-  calc();
-}
-function ch(k,d){
-  var mn={j:0,p:0,n:1};
-  var mx={j:30,p:3,n:10};
-  S[k]=Math.min(mx[k],Math.max(mn[k],S[k]+d));
-  document.getElementById('v'+k).textContent=S[k];
-  calc();
-}
-function calc(){
-  var p=Math.min(Math.max(S.p,1),3);
-  var base=T[S.a][p][S.d];
-  var sup=(S.n-1)*3;
-  var sub=(base+sup)*S.j;
-  var red=S.j>=7?sub*0.05:0;
-  var tot=sub-red;
-  var ac=tot*0.3;
-  var so=tot*0.7;
-  document.getElementById('sa').textContent=sup>0?'+'+sup+'\u00a0\u20ac/jour':'0\u00a0\u20ac';
-  var srEl=document.getElementById('sr');
-  if(S.j>=7){srEl.textContent='-5% appliqu\u00e9e !';srEl.style.color='#6b9e6b';}
-  else{srEl.textContent='-5% (non appliqu\u00e9e)';srEl.style.color='#a89080';}
-  document.getElementById('lb').textContent=euro(base)+'/jour';
-  document.getElementById('ljl').textContent='\u00d7\u00a0'+S.j+'\u00a0jour'+(S.j>1?'s':'');
-  document.getElementById('lj').textContent=S.j>0?euro(base*S.j):'0\u00a0\u20ac';
-  document.getElementById('ls').textContent=sup>0?'+'+euro(sup*S.j):'0\u00a0\u20ac';
-  var dr=document.getElementById('ldrow');
-  if(red>0){dr.style.display='flex';document.getElementById('ld').textContent='-'+euro(red);}
-  else{dr.style.display='none';}
-  document.getElementById('lt').textContent=euro(tot);
-  document.getElementById('rt').innerHTML=Math.round(tot)+'\u00a0<em>\u20ac</em>';
-  var al=S.a==='chat'?'\ud83d\udc31 Chat':'\ud83d\udc36 Chien';
-  var dl=S.d===60?'1h':S.d+' min';
-  document.getElementById('rd').textContent=S.j>0&&S.p>0?al+' \u00b7 '+S.p+' passage'+(S.p>1?'s':'')+' de '+dl+' \u00b7 '+S.j+' jour'+(S.j>1?'s':'')+' \u00b7 '+S.n+' animal'+(S.n>1?'x':''):'';
-  document.getElementById('ra').textContent=euro(ac);
-  document.getElementById('rs').textContent=euro(so);
-}
-window.setA=setA;
-window.setD=setD;
-window.ch=ch;
-calc();
-})();
+  var S = { j:0, chats:0, chiens:0 };
+  var passages = []; // [{duree: 30}]
 
-/* ── Animations au défilement ── */
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
+  var TARIFS = {
+    chat:  { 30:12, 45:15, 60:18 },
+    chien: { 30:14, 45:17, 60:20 }
+  };
+
+  var noms = ['Passage 1','Passage 2','Passage 3'];
+
+  function chA(k, d){
+    if(S[k] === undefined) S[k] = 0;
+    S[k] = Math.min(10, Math.max(0, S[k] + d));
+    document.getElementById('v'+k).textContent = S[k];
+    renderPassages();
+    calc();
+  }
+
+  function euro(n){
+    var s = n.toFixed(2).replace('.',',').replace(/,00$/,'');
+    return s + '\u00a0\u20ac';
+  }
+
+  function ch(k,d){
+    var mn={j:0}; var mx={j:30};
+    S[k] = Math.min(mx[k], Math.max(mn[k], S[k]+d));
+    document.getElementById('v'+k).textContent = S[k];
+    renderPassages();
+    calc();
+  }
+
+  function addPassage(){
+    if(passages.length >= 3) return;
+    passages.push({duree:30});
+    renderPassages();
+    calc();
+  }
+
+  function removePassage(i){
+    passages.splice(i,1);
+    renderPassages();
+    calc();
+  }
+
+  function setDuree(i, d){
+    passages[i].duree = d;
+    renderPassages();
+    calc();
+  }
+
+  function renderPassages(){
+    var list = document.getElementById('passages-list');
+    list.innerHTML = '';
+    passages.forEach(function(p, i){
+      var nom = noms[i] || ('Passage '+(i+1));
+      var tarif = TARIFS[S.chiens > 0 ? 'chien' : 'chat'][p.duree];
+      var item = document.createElement('div');
+      item.className = 'passage-item';
+      item.innerHTML =
+        '<span class="passage-label">'+nom+'</span>'+
+        '<div class="duree-btns">'+
+          '<button class="dbtn'+(p.duree===30?' on':'')+'" onclick="setDuree('+i+',30)">30 min</button>'+
+          '<button class="dbtn'+(p.duree===45?' on':'')+'" onclick="setDuree('+i+',45)">45 min</button>'+
+          '<button class="dbtn'+(p.duree===60?' on':'')+'" onclick="setDuree('+i+',60)">1h</button>'+
+        '</div>'+
+        '<span class="passage-tarif">'+tarif+' €</span>'+
+        (passages.length > 0 ?
+          '<button class="del-btn" onclick="removePassage('+i+')">×</button>' : '');
+      list.appendChild(item);
+    });
+    var addBtn = document.getElementById('add-btn');
+    addBtn.disabled = passages.length >= 3;
+    addBtn.textContent = passages.length >= 3 ? 'Maximum 3 passages' : '+ Ajouter un passage';
+  }
+
+  function calc(){
+    if(passages.length === 0){
+      document.getElementById('rt').innerHTML = '0 <em>€</em>';
+      document.getElementById('rd').textContent = '';
+      document.getElementById('lb').textContent = '0 €';
+      document.getElementById('ljl').textContent = '× 0 jour';
+      document.getElementById('lj').textContent = '0 €';
+      document.getElementById('ls').textContent = '0 €';
+      document.getElementById('lt').textContent = '0 €';
+      document.getElementById('ra').textContent = '0 €';
+      document.getElementById('rs').textContent = '0 €';
+      document.getElementById('ldrow').style.display = 'none';
+      document.getElementById('sa').textContent = sup > 0 ? '+3 € × ' + nbSupAnimaux + ' ' + (nbSupAnimaux > 1 ? 'animaux' : 'animal') + ' suppl. × ' + passages.length + ' passage' + (passages.length > 1 ? 's' : '') + ' = +' + sup + ' €/jour' : '0 €';
+      document.getElementById('lspec').textContent = '0 €';
+      document.getElementById('lspecrow').style.display = 'none';
+      return;
+    }
+
+    // Tarif jour = somme de tous les passages
+    var baseJour = 0;
+    passages.forEach(function(p, i){
+      baseJour += TARIFS[S.chiens > 0 ? 'chien' : 'chat'][p.duree];
+    });
+
+    var totalAnimaux = S.chats + S.chiens;
+    var sup = Math.max(0, totalAnimaux - 1) * 3 * passages.length;
+    var special = S.special || 0;
+    var supSpecial = special * 3;
+    var sub = (baseJour + sup) * S.j + supSpecial;
+    var red = S.j >= 7 ? sub * 0.05 : 0;
+    var tot = sub - red;
+    var ac = tot * 0.3;
+    var so = tot * 0.7;
+
+    // Supplément animaux
+    var supParPassage = Math.max(0, totalAnimaux - 1) * 3;
+    var nbSupAnimaux = Math.max(0, totalAnimaux - 1);
+    document.getElementById('sa').textContent = sup > 0 ? '+3 € × ' + nbSupAnimaux + ' ' + (nbSupAnimaux > 1 ? 'animaux' : 'animal') + ' suppl. × ' + passages.length + ' passage' + (passages.length > 1 ? 's' : '') + ' = +' + sup + ' €/jour' : '0 €';
+    var srEl = document.getElementById('sr');
+    if(S.j >= 7){ srEl.textContent = '-5% appliquée !'; srEl.style.color = '#6b9e6b'; }
+    else { srEl.textContent = '-5% (non appliquée)'; srEl.style.color = '#a89080'; }
+
+    // Détail
+    var al = (S.chats > 0 ? '🐱 ×'+S.chats+' ' : '') + (S.chiens > 0 ? '🐶 ×'+S.chiens : '');
+    var passageDesc = passages.map(function(p,i){
+      var d = p.duree===60?'1h':p.duree+' min';
+      return (noms[i]||'P'+(i+1))+' '+d;
+    }).join(' · ');
+    document.getElementById('rd').textContent = S.j > 0 ?
+      al+' · '+passageDesc+' · '+S.j+' jour'+(S.j>1?'s':'')+' · '+totalAnimaux+(totalAnimaux>1?' animaux':' animal') : '';
+
+    document.getElementById('lb').textContent = euro(baseJour)+'/jour';
+    document.getElementById('ljl').textContent = '× '+S.j+' jour'+(S.j>1?'s':'');
+    document.getElementById('lj').textContent = S.j > 0 ? euro(baseJour * S.j) : '0 €';
+    document.getElementById('ls').textContent = sup > 0 ? '+'+euro(sup * S.j) : '0 €';
+
+    var specRow = document.getElementById('lspecrow');
+    if(supSpecial > 0){
+      specRow.style.display = 'flex';
+      var parts = [];
+      if(S.dimsCount > 0) parts.push(S.dimsCount+' dimanche'+(S.dimsCount>1?'s':''));
+      if(S.feriesCount > 0) parts.push(S.feriesCount+' jour'+(S.feriesCount>1?'s':'')+' férié'+(S.feriesCount>1?'s':''));
+      document.getElementById('lspeclbl').textContent = parts.join(' · ');
+      document.getElementById('lspec').textContent = '+'+euro(supSpecial);
+    } else { specRow.style.display = 'none'; }
+
+    var dr = document.getElementById('ldrow');
+    if(red > 0){ dr.style.display='flex'; document.getElementById('ld').textContent = '-'+euro(red); }
+    else { dr.style.display='none'; }
+
+    document.getElementById('lt').textContent = euro(tot);
+    var pjEl = document.getElementById('rpj');
+    if(S.j > 0 && passages.length > 0){ pjEl.textContent = euro(baseJour + (Math.max(0,totalAnimaux-1)*3*passages.length))+' / jour'; }
+    else { pjEl.textContent = ''; }
+    updateRecapChips(baseJour, totalAnimaux, tot);
+    document.getElementById('rt').innerHTML = Math.round(tot)+' <em>€</em>';
+    document.getElementById('ra').textContent = euro(ac);
+    document.getElementById('rs').textContent = euro(so);
+  }
+
+  // Init
+  addPassage();
+
+  function calcDates(){
+    var s = document.getElementById('d-start').value;
+    var e = document.getElementById('d-end').value;
+    var res = document.getElementById('d-result');
+    if(!s || !e){ res.style.display='none'; return; }
+    var ds = new Date(s), de = new Date(e);
+    var diff = Math.round((de - ds) / (1000*60*60*24)) + 1;
+    if(diff < 1){
+      res.style.display='block';
+      res.className='d-result warn';
+      res.textContent='⚠️ La date de fin doit être après le début';
+      S.j = 0;
+      renderPassages(); calc(); return;
+    }
+    S.j = diff;
+    // Compter dimanches et jours fériés FR
+    // Calcul Pâques (algorithme de Meeus)
+    function getPaques(y){
+      var a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4;
+      var f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3);
+      var h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4;
+      var l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451);
+      var month=Math.floor((h+l-7*m+114)/31)-1;
+      var day=((h+l-7*m+114)%31)+1;
+      return new Date(y,month,day);
+    }
+    function getFeriesMobiles(y){
+      var p=getPaques(y);
+      var add=function(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;};
+      return [add(p,1), add(p,39), add(p,49), add(p,50)];
+    }
+    function isFerie(d){
+      var y=d.getFullYear();
+      var fixes=['01-01','05-01','05-08','07-14','08-15','11-01','11-11','12-25'];
+      var mmdd=String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      if(fixes.indexOf(mmdd)>=0) return true;
+      var mobiles=getFeriesMobiles(y);
+      for(var i=0;i<mobiles.length;i++){
+        if(mobiles[i].getDate()===d.getDate()&&mobiles[i].getMonth()===d.getMonth()) return true;
       }
+      return false;
+    }
+    var dimsCount=0, feriesCount=0;
+    var cur = new Date(ds);
+    var deIncl = new Date(de); deIncl.setDate(deIncl.getDate()+1);
+    while(cur < deIncl){
+      var dow = cur.getDay();
+      var estFerie = isFerie(cur);
+      var estDim = (dow===0);
+      if(estDim && !estFerie) dimsCount++;
+      else if(estFerie) feriesCount++;
+      cur.setDate(cur.getDate()+1);
+    }
+    var special = dimsCount + feriesCount;
+    S.special = special;
+    S.dimsCount = dimsCount;
+    S.feriesCount = feriesCount;
+    var txt = '📅 '+S.j+' jour'+(S.j>1?'s':'')+' de garde';
+    if(special>0){
+      var parts2 = [];
+      if(dimsCount>0) parts2.push(dimsCount+' dimanche'+(dimsCount>1?'s':''));
+      if(feriesCount>0) parts2.push(feriesCount+' férié'+(feriesCount>1?'s':''));
+      txt += ' · ⚠️ '+parts2.join(' + ')+' (+3 € chacun)';
+    }
+    res.style.display='block';
+    res.className='d-result';
+    res.textContent=txt;
+    renderPassages(); calc();
+  }
+  function copierRecap(){
+    var totalAnimaux = S.chats + S.chiens;
+    if(passages.length === 0 || totalAnimaux === 0 || S.j === 0){
+      var ok = document.getElementById('copy-ok');
+      ok.style.color = '#c0392b';
+      ok.textContent = '⚠️ Veuillez remplir tous les champs';
+      setTimeout(function(){ ok.textContent=''; }, 3000);
+      return;
+    }
+
+    var al = (S.chats > 0 ? S.chats+' chat'+(S.chats>1?'s':'') : '') + (S.chats>0 && S.chiens>0 ? ' + ' : '') + (S.chiens > 0 ? S.chiens+' chien'+(S.chiens>1?'s':'') : '');
+    var passageDesc = passages.map(function(p,i){
+      var d = p.duree===60?'1h':p.duree+' min';
+      return 'passage '+(i+1)+' de '+d;
+    }).join(', ');
+
+    var baseJour = 0;
+    passages.forEach(function(p){ baseJour += TARIFS[S.chiens > 0 ? 'chien' : 'chat'][p.duree]; });
+    var sup = Math.max(0, totalAnimaux - 1) * 3 * passages.length;
+    var special = S.special || 0;
+    var supSpecial = special * 3;
+    var sub = (baseJour + sup) * S.j + supSpecial;
+    var red = S.j >= 7 ? sub * 0.05 : 0;
+    var tot = sub - red;
+    var ac = tot * 0.3;
+
+    // Dates
+    var ds = document.getElementById('d-start').value;
+    var de = document.getElementById('d-end').value;
+    var dateStr = '';
+    if(ds && de){
+      var opts = {day:'numeric', month:'long'};
+      dateStr = 'Du '+new Date(ds).toLocaleDateString('fr-FR', opts)+' au '+new Date(de).toLocaleDateString('fr-FR', opts)+' ('+S.j+' jour'+(S.j>1?'s':'')+')\n';
+    }
+
+    var txt = '\u{1F43E} Estimation Moumou & Cie\n\n'
+      + dateStr
+      + '\u{1F431}\u{1F436} Animaux : '+al+'\n'
+      + '\u{1F4CB} Passages : '+passageDesc+'\n'
+      + (special > 0 ? (function(){
+          var p=[];
+          if(S.dimsCount>0) p.push(S.dimsCount+' dimanche'+(S.dimsCount>1?'s':''));
+          if(S.feriesCount>0) p.push(S.feriesCount+' jour'+(S.feriesCount>1?'s':'')+' feri\u00e9'+(S.feriesCount>1?'s':''));
+          return '\u{1F4C5} Dont '+p.join(' + ')+' (+'+supSpecial+' \u20ac)\n';
+        })() : '')
+      + (red > 0 ? '\u{1F381} Reduction 7 jours : -'+red.toFixed(2).replace('.',',')+' \u20ac\n' : '')
+      + '\n\u{1F4B0} Total estime : '+tot.toFixed(2).replace('.',',').replace(/,00$/,'')+' \u20ac'
+      + '\n\u{1F4B3} Acompte a la reservation (30%) : '+ac.toFixed(2).replace('.',',').replace(/,00$/,'')+' \u20ac'
+      + '\n\nEstimation non contractuelle - contactez-moi pour confirmer \u{1F43E}';
+
+    navigator.clipboard.writeText(txt).then(function(){
+      var ok = document.getElementById('copy-ok');
+      ok.style.color = '#6b9e6b';
+      ok.textContent = '✓ Récapitulatif copié !';
+      setTimeout(function(){ ok.textContent=''; }, 3000);
+    });
+  }
+  function updateRecapChips(baseJour, totalAnimaux, tot){
+    var chips = document.getElementById('recap-chips');
+    if(!chips) return;
+    var items = [];
+
+    // Animaux
+    var anLabel = '';
+    if(S.chats > 0) anLabel += S.chats+' chat'+(S.chats>1?'s':'');
+    if(S.chats > 0 && S.chiens > 0) anLabel += ' + ';
+    if(S.chiens > 0) anLabel += S.chiens+' chien'+(S.chiens>1?'s':'');
+    if(anLabel) items.push({icon:'🐾', label: anLabel });
+
+    // Dates
+    var ds = document.getElementById('d-start').value;
+    var de = document.getElementById('d-end').value;
+    if(ds && S.j > 0){
+      var opts = {day:'numeric', month:'short'};
+      var dateLabel = new Date(ds).toLocaleDateString('fr-FR', opts);
+      if(de && de !== ds) dateLabel += ' → '+new Date(de).toLocaleDateString('fr-FR', opts);
+      items.push({icon:'📅', label: dateLabel+' · '+S.j+' jour'+(S.j>1?'s':'')});
+    }
+
+    // Passages
+    if(passages.length > 0){
+      var pLabel = passages.map(function(p,i){
+        return p.duree===60?'1h':p.duree+' min';
+      }).join(' + ');
+      items.push({icon:'🕐', label: passages.length+' passage'+(passages.length>1?'s':'')+' : '+pLabel});
+    }
+
+
+    if(items.length === 0){
+      chips.innerHTML = '<span class="chip empty">Remplissez les champs ci-dessus</span>';
+      return;
+    }
+    chips.innerHTML = items.map(function(it){
+      return '<span class="chip">'+it.icon+' <em>'+it.label+'</em></span>';
+    }).join('');
+  }
+  window.copierRecap = copierRecap;
+  window.calcDates = calcDates;
+  window.ch = ch;
+  window.chA = chA;
+  window.addPassage = addPassage;
+  window.removePassage = removePassage;
+  window.setDuree = setDuree;
+  calc();
+
+  // Scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
     });
   },{threshold:0.12});
   els.forEach(function(el){ io.observe(el); });
